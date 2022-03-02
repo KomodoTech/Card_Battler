@@ -1,8 +1,11 @@
 const express = require('express');
 const path = require('path');
+const dotenv = require('dotenv');
 const Card = require('./models/cardModel');
 
-const PORT = 3000;
+dotenv.config();
+
+const { SERVER_PORT } = process.env;
 
 const app = express();
 
@@ -38,11 +41,11 @@ app.use((err, req, res, next) => {
     status: 500,
     message: { err: 'An error occurred' },
   };
-  const customError = Object.assign({}, defaultError, err);
+  const customError = { ...defaultError, ...err };
   console.log(customError.log);
   return res.status(customError.status).send(JSON.stringify(customError.message));
 });
 
-app.listen(PORT, () => {
-  console.log(`listening on port ${PORT}`);
+app.listen(SERVER_PORT, () => {
+  console.log(`listening on port ${SERVER_PORT}`);
 });

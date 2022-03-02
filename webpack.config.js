@@ -16,7 +16,7 @@ module.exports = {
     filename: 'bundle.js',
   },
   mode,
-  // Production compresses the data, not typical in development, Changing to development 
+  // Production compresses the data, not typical in development, Changing to development
   // allows us to then use webpack dev server that enables hot reloading
   // NOTE: you could have rules for different modules, but here we're applying the same
   // rule everywhere

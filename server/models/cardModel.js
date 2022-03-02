@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 
-const PORT = 27017;
-const MONGO_URI = `mongodb://localhost:${PORT}`;
+dotenv.config();
+
+const { MONGO_PORT } = process.env;
+const MONGO_URI = `mongodb://localhost:${MONGO_PORT}`;
 
 mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
