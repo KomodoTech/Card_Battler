@@ -1,7 +1,8 @@
 import React from 'react';
-// import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import ReactHotLoader from 'react-hot-loader';
 
+// TODO: create a src file
 class App extends React.Component {
   render() {
     const { text } = this.props;

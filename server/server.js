@@ -3,6 +3,7 @@ const path = require('path');
 const dotenv = require('dotenv');
 const Card = require('./models/cardModel');
 const loginRouter = require('./routers/loginRouter');
+const apiRouter = require('./routers/apiRouter');
 
 dotenv.config();
 
@@ -34,10 +35,11 @@ app.use(express.urlencoded({ extended: true }));
  */
 
 app.use('/', loginRouter);
+app.use('/api', apiRouter);
 
 // NOTE: remove '*' should default
 // TODO: build fancy 404 page
-app.all((req, res) => {
+app.use((req, res) => {
   res.status(404).send('Page Not Found');
 });
 
