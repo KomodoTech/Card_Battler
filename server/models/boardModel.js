@@ -26,6 +26,7 @@ connectDB();
 
 const { Schema } = mongoose;
 
+// TODO: make sure upgrade is thought through this will modify all base card attack and hp
 const boardSchema = new Schema({
   roundNumber: { type: Number, required: true },
   health: { type: Number, required: true },
@@ -33,6 +34,8 @@ const boardSchema = new Schema({
   wins: { type: Number, required: true },
   store: { type: storeSchema, required: true },
   cards: [cardSchema],
+  upgrade: { type: Number, required: true, default: 0 },
+  maxTier: { type: Number, required: true, default: 0},
 });
 
 const Store = mongoose.model('store', boardSchema);

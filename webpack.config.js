@@ -1,5 +1,9 @@
 const path = require('path');
+const dotenv = require('dotenv');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+dotenv.config();
+const { CLIENT_PORT, SERVER_PORT } = process.env;
 
 const mode = process.env.NODE_ENV; // our environment variables are accessible via process.env
 // the && here means run both of these commands (order matters) in package json
@@ -22,7 +26,7 @@ module.exports = {
   // rule everywhere
   devServer: {
     host: 'localhost',
-    port: 8080,
+    port: CLIENT_PORT,
     // enable HMR on the devServer
     hot: true,
     // // fallback to root for other urls
@@ -35,9 +39,15 @@ module.exports = {
       publicPath: '/',
     },
     proxy: { // uncomment the proxy method to allow the frontend to communicate with the proxy
-      '/api': 'http://localhost:3000/',
+      '/api': `http://localhost:${SERVER_PORT}/`,
     },
   },
+  // NOTE: resolve allows you to not have to specify file extensions when importing
+  //TODO: figure out if i should have a src directory
+  resolve: {
+    modules: [__dirname, "src", "node_modules"],
+    extensions: ["*", ".js", ".jsx", ".tsx", ".ts"],
+    }, 
   // TODO: look into modules more (is our app one module? what exactly happens when we 
   // exclude node_modules?)
   module: {
@@ -65,19 +75,19 @@ module.exports = {
         exclude: /node_modules/, // webpack is aware of the minified, uglified js and knows to grab that file, so we can exclude it here
         use: ['style-loader', 'css-loader', 'sass-loader'], // order by which you place your css loaders matters //
       },
+      // {
+      //   test: /\.png$/,
+      //   use: [{
+      //     loader: 'url-loader',
+      //     options: {
+      //       mimetype: 'image/png',
+      //     },
+      //   }],
+      // },
       {
-        test: /\.png$/,
-        use: [{
-          loader: 'url-loader',
-          options: {
-            mimetype: 'image/png',
-          },
-        }],
+        test: /\.png|svg|jpe?g|gif/ ,
+        use: ['file-loader'],
       },
-      {
-        test: /\.svg$/,
-        use: 'file-loader',
-      }
     ],
   },
   plugins: [
