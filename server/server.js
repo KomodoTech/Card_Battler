@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const dotenv = require('dotenv');
 const Card = require('./models/cardModel');
+const loginRouter = require('./routers/loginRouter');
 
 dotenv.config();
 
@@ -14,23 +15,29 @@ app.use(express.json());
 // Grab params sent through url
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/', (req, res) => {
-  res.status(200).send('Game here');
-});
+// TODO:
+/**
+ * Route for root should be handled by loginRouter (eventually login screen)
+ *  - GET show login.html
+ *  - POST auth data (eventaully OAuth)
+ *  - OPTIONS look into CORS preflight
+ *
+ * Route for game should be handled by gameRouter
+ *  - GET show game.html initially just a menu with just a button to
+ *    continue onto the game (rest will be react router)
+ *
+ * Route for /api should be handled by apiRouter
+ *  - /buy
+ *  - /roll
+ *  - /startTurn
+ *
+ */
 
-app.post('/', async (req, res) => {
-  const isIdq = await Card.create({
-    health: 2,
-    attack: 2,
-    species_id: 1,
-    equipment_id: 3,
-  });
-  console.log(isIdq);
-  const body = await Card.find({ health: 2 });
-  return res.status(200).send(body);
-});
+app.use('/', loginRouter);
 
-app.use('*', (req, res) => {
+// NOTE: remove '*' should default
+// TODO: build fancy 404 page
+app.all((req, res) => {
   res.status(404).send('Page Not Found');
 });
 
