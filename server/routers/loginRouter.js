@@ -1,5 +1,6 @@
 const express = require('express');
-//TODO: remove card
+
+// TODO: remove card
 const Card = require('../models/cardModel');
 
 const router = express.Router();
