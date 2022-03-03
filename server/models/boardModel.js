@@ -49,5 +49,5 @@ const boardSchema = new Schema({
   maxTier: { type: Number, required: true, default: 0},
 });
 
-const Store = mongoose.model('store', boardSchema);
-module.exports = Store;
+const Board = mongoose.model('board', boardSchema);
+module.exports = Board;

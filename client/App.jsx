@@ -23,6 +23,7 @@ class App extends Component {
   }
 
   render() {
+    console.log('App render hello');
     // const login = <Login key="login" className="login" />
     return (
       <div className="app-component">

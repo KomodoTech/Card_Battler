@@ -19,6 +19,20 @@ const cardController = {};
 
 cardController.getAll = async (req, res, next) => {
   try {
+    res.locals.allCards = await Card.find();
+    return next();
+  } catch (err) {
+    const customError = {
+      log: `Express error handler caught middleware error inside cardController.getAll in cardController.js:\n ${err}`,
+      status: 500,
+      message: { err: 'An error occurred when trying to get your cards' },
+    };
+    return next(customError);
+  }
+};
+
+cardController.getAll = async (req, res, next) => {
+  try {
     res.locals.cards = await Card.find();
     return next();
   } catch (err) {

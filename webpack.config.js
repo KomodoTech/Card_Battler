@@ -11,7 +11,8 @@ const mode = process.env.NODE_ENV; // our environment variables are accessible v
 
 module.exports = {
   // TODO: use brackets if you need multiple entry points (When would we use multiple entry points?)
-  entry: ['./client/index.js'],
+  // Fix for regenerator-runtime issue
+  entry: ['regenerator-runtime/runtime.js', './client/index.js'],
   // NOTE: webpack will create the build directory for us
   // TODO: check if there's any point to having publicPath in output
   output: {

@@ -1,7 +1,7 @@
 import React from 'react';
 
-const boardTempCardCreator = (handleDrawRandomCard) => {
-  return <button onClick={handleDrawRandomCard}>Draw Random Card: {handleDrawRandomCard}</button>
+const boardTempCardCreator = (props) => {
+  return <button onClick={props.drawRandomCardHandler}>Draw Random Card</button>
 }
 
 export default boardTempCardCreator;

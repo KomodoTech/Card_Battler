@@ -3,9 +3,12 @@ const cardController = require('../controllers/cardController');
 
 const router = express.Router();
 
+// GETALL
 router.get('/', cardController.getAll, (req, res) => {
-  res.status(200).json(res.locals.cards);
+  res.status(200).json(res.locals.allCards);
 });
+
+// GETONE
 
 const testCard = {
  hp: 2,
@@ -15,6 +18,7 @@ const testCard = {
   equipment_id: 4,
 }
 
+// POST
 // TODO: fix this route
 router.post('/', async (req, res) => {
   const isIdq = await Card.create(testCard);
