@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
-const { cardSchema } = require('./cardModel');
-const { storeSchema } = require('./storeModel');
+// const { cardSchema } = require('./cardModel');
+// const { storeSchema } = require('./storeModel');
 
 dotenv.config();
 
@@ -27,13 +27,23 @@ connectDB();
 const { Schema } = mongoose;
 
 // TODO: make sure upgrade is thought through this will modify all base card attack and hp
+// TODO: check that you can put required true in the store like this
 const boardSchema = new Schema({
   roundNumber: { type: Number, required: true },
   health: { type: Number, required: true },
   gold: { type: Number, required: true },
   wins: { type: Number, required: true },
-  store: { type: storeSchema, required: true },
-  cards: [cardSchema],
+  store: {
+    type: Schema.Types.ObjectId,
+    ref: 'store',
+    required: true,
+  },
+  cards: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'card',
+    }
+  ],
   upgrade: { type: Number, required: true, default: 0 },
   maxTier: { type: Number, required: true, default: 0},
 });

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
-const { boardSchema } = require('./boardModel');
+// const { boardSchema } = require('./boardModel');
 
 dotenv.config();
 
@@ -26,7 +26,10 @@ const { Schema } = mongoose;
 
 const matchSchema = new Schema({
   roundNumber: { type: Number, required: true },
-  pool: [boardSchema],
+  pool: [{
+    type: Schema.Types.ObjectId,
+    ref: 'board',
+  }],
 });
 
 const Match = mongoose.model('match', matchSchema);
