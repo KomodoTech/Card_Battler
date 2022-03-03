@@ -8,7 +8,7 @@ router.get('/', cardController.getAll, (req, res) => {
 });
 
 const testCard = {
-  health: 2,
+ hp: 2,
   attack: 3,
   level: 1,
   type_id: 2,
@@ -19,7 +19,7 @@ const testCard = {
 router.post('/', async (req, res) => {
   const isIdq = await Card.create(testCard);
   console.log(isIdq);
-  const body = await Card.find({ health: 2 });
+  const body = await Card.find({hp: 2 });
   return res.status(200).send(body);
 });
 

@@ -16,7 +16,7 @@ class Store extends Component {
   }
   render() {
     return (
-      <button>Random Card</button>
+      <button>Draw A Card With Random attributes And Save To Database</button>
     );
   }
 }

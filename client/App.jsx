@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Store from './containers/store.jsx';
 // import Login from './containers/login.jsx';
 
-import Card from './components/card/card';
+import BoardDisplay from './components/board/boardDisplay.jsx';
 
 
 // TODO: create a src dir
@@ -26,14 +26,15 @@ class App extends Component {
     // const login = <Login key="login" className="login" />
     return (
       <div className="app-component">
-        <BrowserRouter>
+        {/* <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Store key="store" />} />
-            {/* <Route path="/" element={login} />
+            <Route path="/" element={<Store key="store" />} /> */}
+        {/* <Route path="/" element={login} />
             <Route path="/menu" element={<Menu key="menu" />} />
             <Route path="/store" element={<Store key="store" />} /> */}
-          </Routes>
-        </BrowserRouter>
+        {/* </Routes>
+        </BrowserRouter> */}
+        <BoardDisplay />
       </div>
     );
   }

@@ -8,41 +8,42 @@ const initialState = {
    * Object.keys(state.types.available)[random number between 0 and Object.keys(state.available).length ]
    *
    */
-  // TODO: deal with powers
+  // TODO: deal with modifiers they should be in board state
+  // For now the modifier should probably be an id that references an object in modifier state somewhere
   types: {
     available: {
       0: {
         typeId: 0,
         name: 'square',
         tier: 0,
-        power: 'for now just a string for the square type',
-        baseHealth: 2,
+        modifier: 'for now just a string for the square type',
+        baseHP: 2,
+        baseAttack: 3
+      },
+      1: {
+        typeId: 1,
+        name: 'circle',
+        tier: 0,
+        modifier: 'for now just a string for the circle type',
+        baseHP: 2,
         baseAttack: 3
       },
     },
     unavailable: {
-      1: {
-        typeId: 1,
-        name: 'circle',
-        tier: 1,
-        power: 'for now just a string for the circle type',
-        baseHealth: 2,
-        baseAttack: 3
-      },
       2: {
         typeId: 2,
         name: 'triangle',
         tier: 1,
-        power: 'for now just a string for the traingle type',
-        baseHealth: 2,
+        modifier: 'for now just a string for the traingle type',
+        baseHP: 2,
         baseAttack: 3,
       },
       3: {
         typeId: 3,
         name: 'trapezoid',
         tier: 2,
-        power: 'for now just a string for the trapezoid type',
-        baseHealth: 4,
+        modifier: 'for now just a string for the trapezoid type',
+        baseHP: 4,
         baseAttack: 5,
       },
     },

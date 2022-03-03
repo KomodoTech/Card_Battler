@@ -7,14 +7,16 @@ export const actionCreator1 = payload => (
     payload: payload,
   }
 );
+
+
 /* -------------------------- can also take form of ------------------------- */
-export const actionCreator2 = payload => (dispatch, getState) => {
-  if (getState().someStateData === 'some condition') {
-    dispatch(
-      { 
-        type: types.ACTION_TYPE2, 
-        payload: payload,
-      }
-    );
-  }
-};
+// export const actionCreator2 = payload => (dispatch, getState) => {
+//   if (getState().someStateData === 'some condition') {
+//     dispatch(
+//       { 
+//         type: types.ACTION_TYPE2, 
+//         payload: payload,
+//       }
+//     );
+//   }
+// };

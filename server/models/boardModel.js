@@ -26,12 +26,13 @@ connectDB();
 
 const { Schema } = mongoose;
 
-// TODO: make sure upgrade is thought through this will modify all base card attack and hp
+// TODO: make sure upgrade is thought through this will modify all base card attack andhp
 // TODO: check that you can put required true in the store like this
+// TODO: rename cards to roster?
 const boardSchema = new Schema({
   roundNumber: { type: Number, required: true },
   health: { type: Number, required: true },
-  gold: { type: Number, required: true },
+  currency: { type: Number, required: true },
   wins: { type: Number, required: true },
   store: {
     type: Schema.Types.ObjectId,

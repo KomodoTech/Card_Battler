@@ -35,7 +35,7 @@ const { Schema } = mongoose;
 // TODO: confirm that equipment should not be required
 // TODOL: figure out issue with type_id
 const cardSchema = new Schema({
-  health: { type: Number, required: true },
+ hp: { type: Number, required: true },
   attack: { type: Number, required: true },
   level: { type: Number, required: true, default: 0 },
   type_id: { type: Number, required: true },

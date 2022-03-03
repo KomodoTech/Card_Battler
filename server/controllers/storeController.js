@@ -6,7 +6,7 @@ storeController.addStore = async (req, res, next) => {
   try {
     // TODO: make this dynamic
     /**
-     * health: { type: Number, required: true },
+     *hp: { type: Number, required: true },
       attack: { type: Number, required: true },
       level: { type: Number, required: true, default: 0 },
       species_id: { type: Number, required: true },
