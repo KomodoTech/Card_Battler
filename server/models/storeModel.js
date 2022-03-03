@@ -28,7 +28,12 @@ const { Schema } = mongoose;
 // TODO: confirm that items should just have a numerical id that is used in the game logic
 // TODO: should the cards and items be required? Can the shop can be empty?
 const storeSchema = new Schema({
-  cards: [cardSchema],
+  cards: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'card'
+    }
+  ],
   items: [Number],
 });
 
