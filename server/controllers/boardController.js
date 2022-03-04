@@ -5,6 +5,7 @@ const boardController = {};
 boardController.getAll = async (req, res, next) => {
   try {
     res.locals.allBoards = await Board.find();
+    console.log(res.locals.allBoards);
     return next();
   } catch (err) {
     const customError = {
@@ -20,6 +21,7 @@ boardController.addBoard = async (req, res, next) => {
   try {
     const board = req.body;
     res.locals.addedBoardId = await Board.create(board);
+    // console.log(res.locals.addedBoardId);
     return next();
   } catch (err) {
     const customError = {
@@ -40,7 +42,7 @@ boardController.getBoard = async (req, res, next) => {
     const customError = {
       log: `Express error handler caught middleware error inside boardController.getBoard in boardController.js:\n ${err}`,
       status: 500,
-      message: { err: 'An error occurred when trying to post your board' },
+      message: { err: 'An error occurred when trying to get your board' },
     };
     return next(customError);
   }

@@ -33,7 +33,8 @@ cardController.getAll = async (req, res, next) => {
 
 cardController.getAll = async (req, res, next) => {
   try {
-    res.locals.cards = await Card.find();
+    res.locals.allCards = await Card.find();
+    console.log(res.locals.allCards);
     return next();
   } catch (err) {
     const customError = {

@@ -8,7 +8,7 @@ const router = express.Router();
 
 // TODO: think about the routes more (potentially build out more dirs)
 router.use('/cards', cardRouter);
-router.use('/store', storeRouter);
-router.use('/board', boardRouter);
+router.use('/stores', storeRouter);
+router.use('/boards', boardRouter);
 
 module.exports = router;

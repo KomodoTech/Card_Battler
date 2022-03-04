@@ -31,6 +31,7 @@ class BoardDisplay extends Component {
     this.drawRandomCard = this.drawRandomCard.bind(this);
     this.generateTestBoard = this.generateTestBoard.bind(this);
     // this.addCardToBoard = this.addCardToBoard.bind(this);
+    this.getStore = this.getStore.bind(this);
   }
 
   // componentDidMount() {
@@ -46,6 +47,17 @@ class BoardDisplay extends Component {
     }
   }
 
+  // Get all stores and just grab the first for testing
+  async getStore() {
+    try {
+      const allStores = await fetch('/api/stores').then(resStore => resStore.json());
+      return allStores[0]._id;
+    }
+    catch (err) {
+      console.log('error in boardDisplay getStore: ', err);
+    }
+  }
+
   async generateTestBoard() {
     // GetAll current cards in array format
     /**
@@ -55,6 +67,7 @@ class BoardDisplay extends Component {
     // TODO: create board route for post
     try {
       const allCards = await this.getAllCards();
+      const storeId = await this.getStore();
       return await fetch('/api/boards', {
         method: 'POST',
         headers: {
@@ -65,10 +78,7 @@ class BoardDisplay extends Component {
           health: 10,
           currency: 10,
           wins: 0,
-          store: {
-            cards: [],
-            items: [0, 1],
-          },
+          store: storeId,
           cards: allCards,
           upgrade: 0,
           maxTier: 0,

@@ -2,6 +2,19 @@ const Store = require('../models/storeModel');
 
 const storeController = {};
 
+storeController.getAll = async (req, res, next) => {
+  try {
+    res.locals.allStores = await Store.find();
+  } catch(err) {
+    const customError = {
+      log: `Express error handler caught middleware error inside storeController.getAll in storeController.js:\n ${err}`,
+      status: 500,
+      message: { err: 'An error occurred when trying to get all your stores' },
+    };
+    return next(customError);
+  }
+}
+
 storeController.addStore = async (req, res, next) => {
   try {
     // TODO: make this dynamic
@@ -20,9 +33,9 @@ storeController.addStore = async (req, res, next) => {
     }
     res.locals.store = await Store.create(testStore);
     return next();
-  } catch (err) {
+  } catch(err) {
     const customError = {
-      log: `Express error handler caught middleware error inside storeController.getAll in storeController.js:\n ${err}`,
+      log: `Express error handler caught middleware error inside storeController.addStore in storeController.js:\n ${err}`,
       status: 500,
       message: { err: 'An error occurred when trying to post your store' },
     };
